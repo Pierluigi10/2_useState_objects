@@ -26,17 +26,38 @@ function App() {
   }, []);
 
   // add new suppliers
-  const addSupplier = (e) => {
-    e.preventDefault(); // prevent that page is reloaded
+  // const addSupplier = (e) => {
+  //   e.preventDefault(); // prevent that page is reloaded
+  //   console.log("New supplier to add:", supplierNew);
+  //   // create copy of OLD entries and merge with NEW entry
+  //   const suppliersNew = [
+  //     ...suppliers,
+  //     { ...supplierNew, _id: Date.now().toString() },
+  //   ];
+  //   // update supplier list and trigger re-render
+  //   setSuppliers(suppliersNew);
+  //   setSupplierNew(supplierDefault); // clear supplier add form
+  // };
+
+  // add new suppliers in fake API
+  const addSupplier = async (e) => {
+    e.preventDefault();
     console.log("New supplier to add:", supplierNew);
-    // create copy of OLD entries and merge with NEW entry
-    const suppliersNew = [
-      ...suppliers,
-      { ...supplierNew, _id: Date.now().toString() },
-    ];
-    // update supplier list and trigger re-render
-    setSuppliers(suppliersNew);
-    setSupplierNew(supplierDefault); // clear supplier add form
+    try {
+      await fetch(`http://localhost:5000/suppliers`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(supplierNew),
+      });
+      const suppliersNew = [
+        ...suppliers,
+        { ...supplierNew, _id: Date.now().toString() },
+      ];
+      setSuppliers(suppliersNew);
+      setSupplierNew(supplierDefault); // clear supplier add form
+    } catch (error) {
+      console.log(error);
+    }
   };
   // RENDER LIST of suppliers
   const jsxSuppliers = suppliers.map((supplier) => (

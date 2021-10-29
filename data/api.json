@@ -1,20 +1,38 @@
 {
-    "suppliers": [
-      {
-        "_id": "s2",
-        "company": "Supply you as we can ltd",
-        "contact": "Rob",
-        "phone": "+496789"
-      }
-    ],
-    "users": [
-      {
-        "_id": "u1",
-        "name": "Pauletta"
-      },
-      {
-        "name": "Piermario",
-        "_id": "DEcRshy"
-      }
-    ]
-  }
+  "suppliers": [
+    {
+      "_id": "s2",
+      "company": "Supply you as we can ltd",
+      "contact": "Rob",
+      "phone": "+496789"
+    },
+    {
+      "company": "test",
+      "contact": "test",
+      "phone": "1234",
+      "_id": "P0lx0IL"
+    },
+    {
+      "_id": "s3",
+      "company": "Supply Test",
+      "contact": "BOBO",
+      "phone": "+493459"
+    },
+    {
+      "company": "Supply Test1",
+      "contact": "BOBO1",
+      "phone": "+4934591",
+      "_id": "yq118S3"
+    }
+  ],
+  "users": [
+    {
+      "_id": "u1",
+      "name": "Pauletta"
+    },
+    {
+      "name": "Piermario",
+      "_id": "DEcRshy"
+    }
+  ]
+}

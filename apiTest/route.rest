@@ -1,0 +1,48 @@
+@url = http://localhost:5000
+
+
+
+### Test base
+GET {{url}}
+
+
+### Test show info
+GET {{url}}/suppliers
+
+###  Test specidic supplier
+GET {{url}}/suppliers/s2
+
+### add a supplier object
+POST {{url}}/suppliers
+content-type: application/json
+
+{
+ 
+      "company": "Supply Test1",
+      "contact": "BOBO1",
+      "phone": "+4934591"
+}
+
+
+### Test delete specific product
+DELETE {{url}}/suppliers/29
+
+
+### replace specific product 
+PUT {{url}}/suppliers/29
+Content-Type: application/json
+
+{
+ "supplierID": 29,
+ "companyName": "John Snowman and others",
+ "contactName": "John Snow",
+ "contactTitle": "Sales Representative",
+ "address": {
+      "street": " Aurelien Str. 148 ",
+      "city": "Leipzig",
+      "region": "Sachsen",
+      "postalCode": "2S 7S8",
+      "country": "Germany",
+      "phone": "(49) 3333-20300"
+ }
+}
