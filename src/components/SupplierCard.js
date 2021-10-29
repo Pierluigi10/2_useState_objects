@@ -1,56 +1,57 @@
 import { useEffect, useState } from "react";
-
 const SupplierCard = ({ supplier, suppliers, setSuppliers }) => {
   // state for storing temporary edits
   const [supplierEdit, setSupplierEdit] = useState({ ...supplier });
-
   // SNEAK OUT ON SOME STATE => watch all the changes!
-
   // useEffect(() => {
   //   console.log({ supplierEdit })
   //   console.log( {suppliers} )
   // }, [supplierEdit])
 
   // delete existing supplier
-  const deleteSupplier = () => {
+  const deleteSupplier = async () => {
     console.log("We wanna delete ID: ", supplier._id);
 
-    // delete item by filtering it out!
-    const suppliersKeep = suppliers.filter((sup) => sup._id !== supplier._id);
+    // zuerst supplier in API updated und DANACH im React State?
+    // zuerst React state updatend und DANACH API ?
+    try {
+      await fetch(`http://localhost:5000/suppliers/${supplier._id}`, {
+        method: "DELETE",
+      });
 
-    // overwrite list of suppliers with those we wanna keep / without deleted
-    setSuppliers(suppliersKeep);
+      // delete item by filtering it out!
+      const suppliersKeep = suppliers.filter((sup) => sup._id !== supplier._id);
+
+      // overwrite list of suppliers with those we wanna keep / without deleted
+      setSuppliers(suppliersKeep);
+    } catch (error) {
+      // if delete failed => we will get here
+      console.log(error);
+    }
   };
 
   // update existing supplier
   const updateSupplier = () => {
     console.log("Updating supplier...", supplierEdit);
-
     // take supplierEdit object => find entry in supplier list => and replace / update values
     // suppliers => []
     // supplierEdit => {}
-
     // UPDATE METHOD 1)
     // findElement
-    // upate element
+    // update element
     // splice old thing with new thing
-
     // UPDATE METHOD 2)
     // filter() => old item weg
-    // updated => push()
-    // overwrite
-
+    // push() => updated item on top
+    // overwrite array
     // UPDATE METHOD 3)
-    // map()
-
+    // map() => find item by ID and overwrite
     // loop over all items, return all items, but with some item modified...
     const suppliersUpdated = suppliers.map((supplier) => {
       return supplier._id !== supplierEdit._id ? supplier : { ...supplierEdit };
     });
-
     setSuppliers(suppliersUpdated);
   };
-
   return (
     <div key={supplier._id}>
       <form>

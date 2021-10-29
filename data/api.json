@@ -1,0 +1,20 @@
+{
+    "suppliers": [
+      {
+        "_id": "s2",
+        "company": "Supply you as we can ltd",
+        "contact": "Rob",
+        "phone": "+496789"
+      }
+    ],
+    "users": [
+      {
+        "_id": "u1",
+        "name": "Pauletta"
+      },
+      {
+        "name": "Piermario",
+        "_id": "DEcRshy"
+      }
+    ]
+  }
